@@ -1,3 +1,4 @@
+
 lexer grammar DecafLexer;
 
 @header {
@@ -13,19 +14,21 @@ tokens
 {
   TK_class
 }
-
-LCURLY : '{';
-RCURLY : '}';
-
-ID  :
-  ('a'..'z' | 'A'..'Z')+;
+SUM: '+';
+EXP:'^';
+REST:'%';
+EXCL:'!';
+AND: '&&';
+OR: '||';
 
 WS_ : (' ' | '\n' ) -> skip;
 
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-CHAR : '\'' (ESC|~'\'') '\'';
-STRING : '"' (ESC|~'"')* '"';
+CHAR : '\''(' '..'!' | '#'..'&' | '('..'[' | ']'..'~' )'\'';
+STRING : '"' (ESC~'"')* '"';
+
 
 fragment
 ESC :  '\\' ('n'|'"');
+
