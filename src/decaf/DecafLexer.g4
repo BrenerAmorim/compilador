@@ -1,3 +1,4 @@
+
 lexer grammar DecafLexer;
 
 @header {
